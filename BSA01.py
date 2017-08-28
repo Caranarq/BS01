@@ -67,30 +67,19 @@ descripcion = {
     'Obtencion de dataset' : describe_fuente,
     'Desagregacion' : 'Municipal',
     'Disponibilidad temporal' : '1994 a 2013',
-    'Repositorio de mineria' :
+    'Repositorio de mineria' : 'https://github.com/INECC-PCCS/BS01',
     'Notas' : 'Para las columnas con nombres repetidos, la primer aparicion corresponde a 1994'
 }
 
 # Armar pestaña de metadatos
 metadatos = pandas.DataFrame.from_dict(descripcion, orient='index')
-metadatos = metadatos.rename(columns = {'0':'Descripcion'})
-
-
-
-print('\n'.join(list(dataset_b)[2:7]))
-list(dataset_b)[2:7]
+metadatos = metadatos.rename(columns = {0:'Descripcion'})
 
 # Exportar a excel
 writer = pandas.ExcelWriter(r'D:\PCCS\01_Analysis\01_DataAnalysis\00_Parametros\scripts\BS01\BS01.xlsx')
 dataset_b.to_excel(writer, sheet_name = 'DATOS')
 metadatos.to_excel(writer, sheet_name = 'Metadatos')
 writer.close()
-
-dataset_b.to_excel(r'P_BS01.xlsx')
-
-list(dataset_b)
-
-dataset.index.len()
 
 
 df = pandas.DataFrame(np.random.randn(10, 4), columns=[1994, 1995, 1996, 1997])
